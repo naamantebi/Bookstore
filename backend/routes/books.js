@@ -4,18 +4,15 @@ const Data = require("./../data");
 module.exports = function() {
     const router = express.Router();
 
-// this is our get method
-// this method fetches all available data in our database
     router.get("/getData", (req, res) => {
         Data.find((err, data) => {
+            console.log(data);
             if (err) return res.json({ success: false, error: err });
             return res.json({ success: true, data: data });
         });
     });
 
 
-// this is our delete method
-// this method removes existing data in our database
     router.delete("/deleteData", (req, res) => {
         const { id } = req.body;
         Data.findOneAndDelete(id, err => {
@@ -24,11 +21,10 @@ module.exports = function() {
         });
     });
 
-// this is our create methid
-// this method adds new data in our database
     router.post("/putData", (req, res) => {
         let data = new Data();
         const { title, description, ISBN_number , author, publication_date, genre, price} = req.body;
+
         if (!title || !author) {
             return res.json({
                 success: false,
