@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {Jumbotron} from 'react-bootstrap';
 
-export class Title extends Component {
+export class Header extends Component {
 
     render() {
-        return <div class="example-wrapper container-fluid">
-            <div class="row"><Jumbotron>
+        return <div className="container-fluid">
+            <div className="row">
+                <Jumbotron>
                 <h1>Bookstore</h1>
                 <p>
                     Welcome to our bookstore !

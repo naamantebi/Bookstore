@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {
     Label,
-    FieldGroup,
     Button,
     DropdownButton,
     MenuItem,
@@ -23,7 +22,7 @@ export class AddBook extends Component {
     };
 
     render() {
-        return <form onSubmit={() => this.props.func(this.state)} class="col-xs-12 col-sm-6 example-col">
+        return <form onSubmit={() => this.props.func(this.state)} className="col-xs-12 col-sm-6">
             <h2>
                 <Label>Add Book:</Label>
             </h2>
@@ -83,7 +82,7 @@ export class AddBook extends Component {
                 </ControlLabel>
             </FormGroup>
             <FormGroup>
-                <DropdownButton title={"Pick book genre:"} key={this.state.genre}
+                <DropdownButton title={"Pick book genre:"} key={this.state.genre} id="genreId"
                                 onSelect={e => this.setState({genre: e})}>
                     <MenuItem eventKey="Science fiction">Science fiction</MenuItem>
                     <MenuItem eventKey="Satire">Satire</MenuItem>
@@ -104,8 +103,7 @@ export class AddBook extends Component {
                 </ControlLabel>
             </FormGroup>
             <FormGroup>
-                <Button bsStyle="primary"
-                        Button type="submit">Add Book</Button>
+                <Button bsStyle="primary" type="submit">Add Book</Button>
             </FormGroup>
         </form>
     }

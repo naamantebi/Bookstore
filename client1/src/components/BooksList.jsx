@@ -3,22 +3,23 @@ import {ListGroup, ListGroupItem, Button} from 'react-bootstrap';
 
 export class BooksList extends Component {
 
-    onBookSelected = function (title) {
-        // this.props.selectedBook= title;
-    }
-
     render() {
         return <ListGroup>
             {this.props.data.length <= 0
                 ? "NO DB ENTRIES YET"
                 : this.props.data.map((book) => (
-                    <ListGroupItem onClick={this.onBookSelected(book.title)}>{book.title}
-                        {/*<Button bsStyle="primary"*/}
-                        {/*Button type="submit" onClick={this.booksService.deleteFromDB(book.title)}>delete*/}
-                        {/*</Button>*/}
+                    <ListGroupItem style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}
+                                   key={book.title}>{book.title}
+                        <div>
+                            <Button bsStyle="info" type="submit"
+                                    onClick={() => this.props.onSelect(book)}>Info
+                            </Button>
+                            <Button bsStyle="danger" type="submit"
+                                    onClick={() => this.props.onDelete(book)}>Delete
+                            </Button>
+                        </div>
                     </ListGroupItem>
                 ))}
         </ListGroup>
-
     }
 }

@@ -4,27 +4,24 @@ const Data = require("./../data");
 module.exports = function() {
     const router = express.Router();
 
-    router.get("/getData", (req, res) => {
+    router.get("/all", (req, res) => {
         Data.find((err, data) => {
-            console.log(data);
             if (err) return res.json({ success: false, error: err });
             return res.json({ success: true, data: data });
         });
     });
 
-
-    router.delete("/deleteData", (req, res) => {
-        const { id } = req.body;
-        Data.findOneAndDelete(id, err => {
+    router.delete("/delete/:title", (req, res) => {
+        const { title } = req.params;
+        Data.findOneAndDelete(title, err => {
             if (err) return res.send(err);
             return res.json({ success: true });
         });
     });
 
-    router.post("/putData", (req, res) => {
+    router.post("/add", (req, res) => {
         let data = new Data();
         const { title, description, ISBN_number , author, publication_date, genre, price} = req.body;
-
         if (!title || !author) {
             return res.json({
                 success: false,
